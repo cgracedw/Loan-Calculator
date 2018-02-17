@@ -47,6 +47,7 @@ public class InfoInputPanel extends JPanel {
 	public InfoInputPanel() {
 		Dimension size = getPreferredSize();
 		size.width = 320;
+		size.height = 320;
 		setPreferredSize(size);
 		
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
