@@ -54,7 +54,7 @@ public class InfoInputPanel extends JPanel {
 		principal = new JLabel("Loan Amount: ");
 		loanTermYrs = new JLabel("Loan Term in Years: ");
 		or = new JLabel("or");
-		loanTermMos = new JLabel("Loan Term in Months: ");
+		loanTermMos = new JLabel("Loan Terms in Months: ");
 		interestRate = new JLabel("Interest Rate: ");
 		
 		principalFld = new JTextField(10);
