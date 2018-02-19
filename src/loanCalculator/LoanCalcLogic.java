@@ -15,8 +15,16 @@ public class LoanCalcLogic {
 	Double totalPrincipal;
 	Double principalValue;
 	Double interestRateValue;
+	//Double interestPercent;
+	//Double totalInterest;
+	
 	Double interestPercent;
 	Double totalInterest;
+	Double monthlyIntRate; 
+	Double updatedPrincipal;
+	Double monthlyInterest;
+	Double totalAmountDue; 
+
 	
 	public int getTermMonths() {
 		termYrsValue = Integer.parseInt(termYrsFld);
@@ -42,19 +50,21 @@ public class LoanCalcLogic {
 	}
 	
 	public Double getMonthlyPayments() {
-		if (termMosFld !=null && principalFld !=null && interestRateFld !=null) {
-			try {
 			termMosValue = Integer.parseInt(termMosFld);
 			principalValue = Double.parseDouble(principalFld);
 			interestRateValue = Double.parseDouble(interestRateFld);
-			interestPercent = interestRateValue/100;
-			Double intPerMonth = (principalValue * interestPercent)/termMosValue;
-			Double principalPerMonth = principalValue/termMosValue;
-			monthlyPayments = intPerMonth + principalPerMonth;
-			} catch (NumberFormatException e) {
-				System.out.println("Please enter a number.");
-			}
-		}
+			
+			interestPercent = interestRateValue/100; //changes number received into percent;
+			totalInterest = interestPercent * principalValue; //calculates the total interest for loan.
+			monthlyIntRate = interestPercent/12; //calculates the interest rate per month.
+			updatedPrincipal = principalValue - monthlyPayments; //calculates the new principal after a payment.
+			monthlyInterest = monthlyIntRate * updatedPrincipal;
+			totalAmountDue = principalValue + totalInterest; //calculates the full amount owed plus the interest.
+			
+			Double totalDue = principalValue + totalInterest;
+			
+			monthlyPayments = totalDue/months;
+		
 		    System.out.println(monthlyPayments);
 			return monthlyPayments;
 	}
