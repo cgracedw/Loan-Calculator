@@ -67,8 +67,10 @@ public class LoanCalcLogic {
 		principalValue = Double.parseDouble(principalFld);
 		interestRateValue = Double.parseDouble(interestRateFld);
 		
-		for(int i=0; i<=months; i++) {
+		for(int i=1; i<=months; i++) {
+			
 			int monthStart = 0;
+			System.out.println(i);
 			
 				updatedPrincipal = principalValue - monthlyPayments;
 	
@@ -96,10 +98,11 @@ public class LoanCalcLogic {
 	}
 	
 	public Double getTotalInterest() {
-//		totalInterest = principalValue * interestPercent;
+		return principalValue * interestPercent;
+	//	totalInterest = principalValue * interestPercent;
 		
-//		System.out.println(totalInterest);
-		return totalInterest;
+	//	System.out.println(totalInterest);
+	//	return totalInterest;
 	}
 	
 }
