@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
 	
 	private InfoInputPanel infoInputPanel;
 	private InfoOutputPanel infoOutputPanel;
-	private LoanCalcLogic loanCalcLogic;
+	
 	
 	private String principalFld;
 	private String termYrsFld;
@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
 		
 		infoInputPanel = new InfoInputPanel(); 
 		infoOutputPanel = new InfoOutputPanel();
-		loanCalcLogic = new LoanCalcLogic();
+		
 			
 		calculate = new JButton("Calculate");
 		
@@ -58,6 +58,7 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				
 				principalFld = infoInputPanel.getPrincipal();
 				System.out.println(principalFld);
@@ -71,6 +72,7 @@ public class MainFrame extends JFrame {
 				interestRateFld = infoInputPanel.getInterestRate();		
 				System.out.println(interestRateFld);
 				
+				LoanCalcLogic loanCalcLogic = new LoanCalcLogic(termMosFld, principalFld, interestRateFld);
 				
 				monthlyPayments = loanCalcLogic.getMonthlyPayments();
 				System.out.println(monthlyPayments);
@@ -83,6 +85,7 @@ public class MainFrame extends JFrame {
 				
 				totalPrincipal = loanCalcLogic.getTotalPrincipal();
 				System.out.println(totalPrincipal);
+				infoOutputPanel.setValues(monthlyPayments, totalInterest, totalPrincipal);
 			}
  
 		}); 
