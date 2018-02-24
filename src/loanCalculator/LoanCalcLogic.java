@@ -1,16 +1,16 @@
 package loanCalculator;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class LoanCalcLogic {
-	String termMosFld;
 
 	int termMosValue;
 	int termYrsValue;
-	int months;
-	int years;
 	
 	Double monthlyPayments;
 	Double totalPrincipal;
-	Double principalValue;
 	Double interestRateValue;
 	
 	
@@ -37,7 +37,7 @@ public class LoanCalcLogic {
 	}
 
 	
-	public int getTermYrs() {
+/*	public int getTermYrs() {
 		int years = 0;
 		if (termMosValue > 0) {
 		years = termMosValue/12;
@@ -45,7 +45,7 @@ public class LoanCalcLogic {
 		System.out.println(years);
 		return years;
 	}
-	
+*/	
 	public Double getTotalPrincipal() { 
 		
 		return totalPrincipal;
@@ -93,27 +93,34 @@ public class LoanCalcLogic {
 		updatedPrincipal = totalPrincipal - monthlyPayments; //calculates the new principal after a payment.
 		return updatedPrincipal;
 	}
-	
+
 	public Double getMonthlyPayments() {
-			
+		
 			interestPercent = interestRateValue/100; //changes number received into percent;
 			totalInterest = interestPercent * totalPrincipal; //calculates the total interest for loan.
 			
-			
 			totalDue = totalPrincipal + totalInterest;
-			
 			monthlyPayments = totalDue/termMosValue;
+
+			double newMonthlyPayments = Math.round(monthlyPayments*100.0)/100.0;
 		
-		    System.out.println(monthlyPayments);
-			return monthlyPayments;
+ 			monthlyPayments = newMonthlyPayments;
+ 
+ 			System.out.println("monthlyPayments (Math.round) : " + newMonthlyPayments);
+			
+			return newMonthlyPayments;
+			
 	}
 	
+	
 	public Double getTotalInterest() {
-		return totalPrincipal * interestPercent;
-	//	totalInterest = principalValue * interestPercent;
+		totalInterest = totalPrincipal * interestPercent;
 		
-	//	System.out.println(totalInterest);
-	//	return totalInterest;
+		double newTotalInterest = Math.round(totalInterest*100.0)/100.0;
+		
+		totalInterest = newTotalInterest;
+		System.out.println(newTotalInterest);
+		return newTotalInterest;
 	}
 	
 }

@@ -31,7 +31,6 @@ public class MainFrame extends JFrame {
 	
 	private int termMonths;
 	private int loanTermMosValue;
-	private int loanTermYrsValue;
 	
 	private JButton calculate;
 	
@@ -63,9 +62,6 @@ public class MainFrame extends JFrame {
 				principalFld = infoInputPanel.getPrincipal();
 				System.out.println(principalFld);
 				
-				termYrsFld = infoInputPanel.getYears();
-				System.out.println(termYrsFld);
-				
 				termMosFld = infoInputPanel.getMonths();
 				System.out.println(termMosFld);
 				
@@ -85,6 +81,7 @@ public class MainFrame extends JFrame {
 				
 				totalPrincipal = loanCalcLogic.getTotalPrincipal();
 				System.out.println(totalPrincipal);
+				
 				infoOutputPanel.setValues(monthlyPayments, totalInterest, totalPrincipal);
 			}
  
