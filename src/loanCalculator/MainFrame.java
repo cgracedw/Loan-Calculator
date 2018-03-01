@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class MainFrame extends JFrame {
 	
@@ -28,6 +29,8 @@ public class MainFrame extends JFrame {
 	private Double monthlyPayments;
 	private Double totalInterest;
 	private Double totalPrincipal;
+	private Double updatedPrincipal;
+	private Double monthlyInterest;
 	
 	private int termMonths;
 	private int loanTermMosValue;
@@ -82,6 +85,11 @@ public class MainFrame extends JFrame {
 				totalPrincipal = loanCalcLogic.getTotalPrincipal();
 				System.out.println(totalPrincipal);
 				
+				updatedPrincipal = loanCalcLogic.getUpdatedPrincipal();
+				System.out.println(updatedPrincipal);
+				
+				monthlyInterest = loanCalcLogic.getMonthlyInterest();
+				
 				infoOutputPanel.setValues(monthlyPayments, totalInterest, totalPrincipal);
 			}
  
@@ -90,8 +98,10 @@ public class MainFrame extends JFrame {
 		showAmortTable.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+			public void actionPerformed(ActionEvent event) {
+				if (event.getActionCommand().equals("Amortization Table")) {
+					
+				}
 				
 			}
 			
@@ -109,3 +119,39 @@ public class MainFrame extends JFrame {
 	
 
 }
+		
+	/*	showAmortTable.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				
+		/*		if (event.getActionCommand().equals("Amortization Table")) {
+					
+					AmortizationTable aFrame = new AmortizationTable();
+	//				JFrame amortFrame = new JFrame("Amortization Table");
+				    SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						aFrame.pack();
+						aFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+						aFrame.setVisible(true);
+						
+				
+				
+			});
+					
+		}
+				
+				    
+			}
+		//Add Swing components to content pane
+		
+		Container c = getContentPane();
+		c.add(infoOutputPanel, BorderLayout.EAST);
+		c.add(infoInputPanel, BorderLayout.WEST);
+		c.add(calculate, BorderLayout.SOUTH);
+		c.add(showAmortTable, BorderLayout.NORTH);
+	}
+	
+
+		}
+} */

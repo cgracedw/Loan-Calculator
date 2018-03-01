@@ -18,13 +18,10 @@ import javax.swing.JTextField;
 public class InfoInputPanel extends JPanel {
 	
 	private JLabel principal;
-	//private JLabel loanTermYrs;
-	//private JLabel or;
 	private JLabel loanTermMos;
 	private JLabel interestRate;
 	
 	private JTextField principalFld;
-	//private JTextField termYrsFld;
 	private JTextField termMosFld;
 	private JTextField interestRateFld;
 	
@@ -32,9 +29,6 @@ public class InfoInputPanel extends JPanel {
 		return principalFld.getText();
 	}
 	
-	//public String getYears() {
-	//	return termYrsFld.getText();
-	//}
 	
 	public String getMonths() {
 		return termMosFld.getText();
@@ -53,13 +47,10 @@ public class InfoInputPanel extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		principal = new JLabel("Loan Amount: ");
-//		loanTermYrs = new JLabel("Loan Term in Years: ");
-//		or = new JLabel("or");
 		loanTermMos = new JLabel("Loan Terms in Months: ");
 		interestRate = new JLabel("Interest Rate: ");
 		
 		principalFld = new JTextField(10);
-//		termYrsFld = new JTextField(10);
 		termMosFld = new JTextField(10);
 		interestRateFld = new JTextField(10);
 		
@@ -78,14 +69,6 @@ public class InfoInputPanel extends JPanel {
 		gc.gridy = 0;
 		add(principal, gc);
 		
-/*		gc.gridx = 0;
-		gc.gridy = 1;
-		add(loanTermYrs, gc);
-		
-		gc.gridx = 0;
-		gc.gridy = 2;
-		add(or,gc);
-		*/
 		gc.gridx = 0;
 		gc.gridy = 3;
 		add(loanTermMos, gc);
@@ -101,10 +84,6 @@ public class InfoInputPanel extends JPanel {
 		gc.gridy = 0;
 		add(principalFld, gc);
 		
-/*		gc.gridx = 1;
-		gc.gridy = 1;
-		add(termYrsFld, gc);
-	*/	
 		gc.gridx = 1;
 		gc.gridy = 3;
 		add(termMosFld, gc);
