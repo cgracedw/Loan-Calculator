@@ -19,21 +19,19 @@ public class MainFrame extends JFrame {
 	private InfoOutputPanel infoOutputPanel;
 	
 	
-	private String principalFld;
-	private String termYrsFld;
-	private String termMosFld;
-	private String interestRateFld;
+	private String principalFld;    // Principal input by user
+	private String termMosFld;      // Months input by user
+	private String interestRateFld; // Interest rate number input by user
 	
-	private Double interestPercent;
-	private Double principalValue;
-	private Double monthlyPayments;
-	private Double totalInterest;
-	private Double totalPrincipal;
-	private Double updatedPrincipal;
-	private Double monthlyInterest;
+//	private Double interestPercent;
+//	private Double principalValue;
+	private Double monthlyPayments; // Monthly payments
+	private Double totalInterest;   // total interest for the entire loan
+	private Double principal;       // loan principal
+	private Double updatedTotalDue; // The amount of loan left after each payment
+	private Double monthlyInterest; // The amount of interest per each monthly payment
 	
-	private int termMonths;
-	private int loanTermMosValue;
+	private int months;             // loan term in months
 	
 	private JButton calculate;
 	
@@ -79,18 +77,18 @@ public class MainFrame extends JFrame {
 				totalInterest = loanCalcLogic.getTotalInterest();
 				System.out.println(totalInterest);
 				
-				termMonths = loanCalcLogic.getTermMonths();
-				System.out.println(termMonths);
+				months = loanCalcLogic.getMonths();
+				System.out.println(months);
 				
-				totalPrincipal = loanCalcLogic.getTotalPrincipal();
-				System.out.println(totalPrincipal);
+				principal = loanCalcLogic.getPrincipal();
+				System.out.println(principal);
 				
-				updatedPrincipal = loanCalcLogic.getUpdatedPrincipal();
-				System.out.println(updatedPrincipal);
+				updatedTotalDue = loanCalcLogic.getUpdatedTotalDue();
+				System.out.println(updatedTotalDue);
 				
 				monthlyInterest = loanCalcLogic.getMonthlyInterest();
 				
-				infoOutputPanel.setValues(monthlyPayments, totalInterest, totalPrincipal);
+				infoOutputPanel.setValues(monthlyPayments, totalInterest, principal);
 			}
  
 		}); 

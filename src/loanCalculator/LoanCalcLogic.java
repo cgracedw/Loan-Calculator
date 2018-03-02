@@ -7,47 +7,45 @@ import java.text.NumberFormat;
 
 public class LoanCalcLogic {
 
-	int termMosValue;
-	int termYrsValue;
 	
-	Double monthlyPayments;
-	Double totalPrincipal;
-	Double interestRateValue;
+
+	private Double monthlyPayments;   // Monthly payments
+	private Double principal;         // loan principal
+	private Double interestRateValue; // Interest rate as a number
+	private Double interestPercent;   // interestRateValue number converted to a percent
+	private Double totalInterest;     // total interest for the entire loan 
+	private Double updatedTotalDue;   // The amount of loan left after each payment
+	private Double monthlyInterest;   // The amount of interest per each monthly payment
+	private Double totalDue;          // total principal + total interest
 	
-	
-	Double interestPercent;
-	Double totalInterest;
-//	Double monthlyIntRate; 
-	Double updatedPrincipal;
-	Double monthlyInterest;
-	Double totalDue; 
-	
+	private int months;               // loan term in months
+
 	DecimalFormat dollar = new DecimalFormat("#,##0.00");
 	
 	public LoanCalcLogic(String termMosFld, String principalFld, String interestRateFld) {
-		termMosValue = Integer.parseInt(termMosFld);
-		totalPrincipal = Double.parseDouble(principalFld);
-		interestRateValue = Double.parseDouble(interestRateFld);
+		months = Integer.parseInt(termMosFld); // Loan terms input by user, parsed to Double.
+		principal = Double.parseDouble(principalFld); // Principal input by user, parsed to Double.
+		interestRateValue = Double.parseDouble(interestRateFld); // Interest rate as a number, input by user, parsed to Double.
 	}
 
 /* 
  * returns the number of months 	
  */
-	public int getTermMonths() {
-		return termMosValue;
+	public int getMonths() {
+		return months;
 	}
 
 /*
- * returns the total principal of the loan.
+ * returns the principal of the loan.
  */
-	public Double getTotalPrincipal() { 
+	public Double getPrincipal() { 
 		
-		return totalPrincipal;
+		return principal;
 	}
 	
 // Calculates the new principal at the beginning of each month.
 	//TODO get return value to format correctly.
-	public Double getUpdatedPrincipal() {
+	public Double getUpdatedTotalDue() {
 		/*
 		 * calculate the monthly interest for that month
 		 * subtract the monthly payment amount
@@ -59,16 +57,15 @@ public class LoanCalcLogic {
 		
 		
 		System.out.println(monthlyPayments);
-		System.out.println(termMosValue);
+		System.out.println(months);
 		Double principal;
-		Double updatedPayments;
+		
 		
 	//	principal = Double.valueOf(dollar.format(updatedPrincipal));
 
-		for(int i=0; i<=termMosValue; i++) {
+		for(int i=0; i<=months; i++) {
 			
-			updatedPayments = i*monthlyPayments;
-			updatedPrincipal = totalDue - updatedPayments;
+			updatedTotalDue = totalDue - i*monthlyPayments;
 			//principal = Double.valueOf(dollar.format(updatedPrincipal));
 			
 	//		if(updatedPrincipal < monthlyPayments) {
@@ -77,55 +74,41 @@ public class LoanCalcLogic {
 	//		String formatP = dollar.format(updatedPrincipal);
 	//		principal = Double.valueOf(formatP);
 	//		System.out.println(principal);
-				System.out.println("Payment Number: " + i + " remaining Principal after payment " + i + " is: $" + updatedPrincipal);
+				System.out.println("Payment Number: " + i + " remaining Principal after payment " + i + " is: $" + updatedTotalDue);
 			
 				
 			
 		}
-		principal = Double.valueOf(dollar.format(updatedPrincipal));
+		principal = Double.valueOf(dollar.format(updatedTotalDue));
 		System.out.println(principal);
 		return principal;
 	}
+	
+	// Calculates the payment amount per month
 
 	public Double getMonthlyPayments() {
 			
 			interestPercent = interestRateValue/100; //changes number received into percent;
-			totalInterest = interestPercent * totalPrincipal; //calculates the total interest for loan.
+			totalInterest = interestPercent * principal; //calculates the total interest for loan.
 			
-			totalDue = totalPrincipal + totalInterest;
-			monthlyPayments = totalDue/termMosValue;
+			totalDue = principal + totalInterest;
+			monthlyPayments = totalDue/months;
 			
-			Double payment;
-			
-			//DecimalFormat dollar = new DecimalFormat("#,##0.00");
+			Double payment; // monthlyPayments value formatted to 0.00
 			
 			payment = Double.valueOf(dollar.format(monthlyPayments));
-			
-			//NumberFormat formatter = NumberFormat.getCurrencyInstance();
-			//System.out.println(formatter.format(monthlyPayments));
-			
-			//BigDecimal monthlyPayments = new BigDecimal();
-			
-			//double newMonthlyPayments = Math.round(monthlyPayments*100.0)/100.0;
-		
- 			//monthlyPayments = newMonthlyPayments;
- 
- 			//System.out.println("monthlyPayments (Math.round) : " + newMonthlyPayments);
-			//String newMonthlyPayments = dollar.format(monthlyPayments);
-			
-			//monthlyPayments = newMonthlyPayments;
-			
-			//return dollar.format(monthlyPayments);
 			return payment;
 			
 	}
+//  Calculates the 
 	
-public Double getMonthlyInterest() {
-	interestPercent = interestRateValue/100;
-	Double monthlyIntRate = interestPercent/12; //calculates the interest rate per month.
+	public Double getMonthlyInterest() {
+	interestPercent = interestRateValue/100;    // converts interestRateValue number to a percent
+	Double monthlyIntRate = interestPercent/12; // calculates the interest rate per month.
 	
-		for(int i=1; i<=termMosValue; i++) {
-				monthlyInterest = monthlyIntRate * updatedPrincipal;	
+		for(int i=1; i<=months; i++) {
+				monthlyInterest = monthlyIntRate * updatedTotalDue;	
+				System.out.println("This is interest per month" + monthlyInterest);
 			}
 			
 			System.out.println("this is monthlyInterest: " + monthlyInterest);
@@ -138,7 +121,7 @@ public Double getMonthlyInterest() {
 //  Calculates total interest
 
 	public Double getTotalInterest() {
-		totalInterest = totalPrincipal * interestPercent;
+		totalInterest = principal * interestPercent;
 		
 		double newTotalInterest;
 		
