@@ -23,8 +23,6 @@ public class MainFrame extends JFrame {
 	private String termMosFld;      // Months input by user
 	private String interestRateFld; // Interest rate number input by user
 	
-//	private Double interestPercent;
-//	private Double principalValue;
 	private Double monthlyPayments; // Monthly payments
 	private Double totalInterest;   // total interest for the entire loan
 	private Double principal;       // loan principal
@@ -32,6 +30,14 @@ public class MainFrame extends JFrame {
 	private Double monthlyInterest; // The amount of interest per each monthly payment
 	
 	private int months;             // loan term in months
+	
+/////////////////////////////////////////////////////////
+private Double interest;          // interest
+private Double updatedPrincipal; 
+private Double principalBalance;
+
+private Double calcPayment;
+///////////////////////////////////////////////////////
 	
 	private JButton calculate;
 	
@@ -71,6 +77,8 @@ public class MainFrame extends JFrame {
 				
 				LoanCalcLogic loanCalcLogic = new LoanCalcLogic(termMosFld, principalFld, interestRateFld);
 				
+				calcPayment = loanCalcLogic.getCalcPayment();
+				
 				monthlyPayments = loanCalcLogic.getMonthlyPayments();
 				System.out.println(monthlyPayments);
 				
@@ -83,12 +91,20 @@ public class MainFrame extends JFrame {
 				principal = loanCalcLogic.getPrincipal();
 				System.out.println(principal);
 				
-				updatedTotalDue = loanCalcLogic.getUpdatedTotalDue();
-				System.out.println(updatedTotalDue);
+			//	updatedTotalDue = loanCalcLogic.getUpdatedTotalDue();
+			//	System.out.println(updatedTotalDue);
 				
-				monthlyInterest = loanCalcLogic.getMonthlyInterest();
+			//	monthlyInterest = loanCalcLogic.getMonthlyInterest();
 				
 				infoOutputPanel.setValues(monthlyPayments, totalInterest, principal);
+				
+		//		principalBalance = loanCalcLogic.getPrincipalBalance();
+		//		System.out.println("This is principalBalance" + principalBalance);
+				
+				interest = loanCalcLogic.getInterest();
+				System.out.println("this is interest" + interest);
+				
+				
 			}
  
 		}); 

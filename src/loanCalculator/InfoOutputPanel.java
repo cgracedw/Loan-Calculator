@@ -20,6 +20,7 @@ public class InfoOutputPanel extends JPanel {
 	
 	public void setValues(Double monthlyPayments, Double totalInterest, Double totalPrincipal) {
 		monthlyPaymentsFld.setText(monthlyPayments.toString());
+	//	monthlyPaymentsFld.setText(payment.toString());
 		totalPrincPaidFld.setText(totalPrincipal.toString());
 		totalIntPaidFld.setText(totalInterest.toString());
 	}
