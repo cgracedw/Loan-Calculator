@@ -18,11 +18,10 @@ public class InfoOutputPanel extends JPanel {
 	private JTextField totalPrincPaidFld;
 	private JTextField totalIntPaidFld;
 	
-	public void setValues(Double monthlyPayments, Double totalInterest, Double totalPrincipal) {
-		monthlyPaymentsFld.setText(monthlyPayments.toString());
-	//	monthlyPaymentsFld.setText(payment.toString());
-		totalPrincPaidFld.setText(totalPrincipal.toString());
-		totalIntPaidFld.setText(totalInterest.toString());
+	public void setValues(String calcPayment, String totalInterest, String totalPrincipal) {
+		monthlyPaymentsFld.setText(calcPayment);
+		totalPrincPaidFld.setText(totalPrincipal);
+		totalIntPaidFld.setText(totalInterest);
 	}
 		public InfoOutputPanel() {
 			Dimension size = getPreferredSize();
